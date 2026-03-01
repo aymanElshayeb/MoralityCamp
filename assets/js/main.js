@@ -110,10 +110,85 @@ function initFeedback() {
   });
 }
 
+/* ─── Interactive Quiz ─── */
+function showFeedback(qEl, state, points, correctIdx, opts) {
+  const fb = qEl.querySelector('.q-feedback');
+  if (!fb) return;
+  if (state === 'correct') {
+    fb.className = 'q-feedback fb-correct';
+    fb.textContent = '✅ إجابة صحيحة! +' + points + (points === 1 ? ' نقطة' : ' نقاط');
+  } else if (state === 'wrong') {
+    const cn = opts ? opts[correctIdx].textContent.trim() : '';
+    fb.className = 'q-feedback fb-wrong';
+    fb.textContent = '❌ إجابة خاطئة. الإجابة الصحيحة: ' + cn;
+  } else {
+    fb.className = 'q-feedback fb-skip';
+    fb.textContent = '⚠️ لم تختر إجابة';
+  }
+}
+
+function showResult(resultId, score, total) {
+  const el = document.getElementById(resultId);
+  if (!el) return;
+  const pct = total > 0 ? Math.round((score / total) * 100) : 0;
+  let msg = '', emoji = '';
+  if (pct >= 90)      { msg = 'ممتاز! أحسنت 🌟';         emoji = '🏆'; }
+  else if (pct >= 75) { msg = 'جيد جداً، واصل! 💪';      emoji = '🥈'; }
+  else if (pct >= 60) { msg = 'جيد، يمكنك الأفضل 👍';    emoji = '🥉'; }
+  else                { msg = 'حاول مرة أخرى — لا بأس!'; emoji = '📖'; }
+  el.innerHTML =
+    '<div class="qr-score">' + emoji + ' ' + score + ' / ' + total + '</div>' +
+    '<div class="qr-label">' + pct + '%</div>' +
+    '<div class="qr-bar"><div class="qr-bar-fill" style="width:' + pct + '%"></div></div>' +
+    '<div class="qr-message">' + msg + '</div>' +
+    '<button class="qr-retry" onclick="location.reload()">🔄 إعادة المحاولة</button>';
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function initQuiz(formId, submitBtnId, resultId) {
+  const btn = document.getElementById(submitBtnId);
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const questions = document.querySelectorAll('#' + formId + ' .quiz-q');
+    let score = 0, total = 0;
+    questions.forEach(q => {
+      const correct = parseInt(q.dataset.correct, 10);
+      const points  = parseInt(q.dataset.points  || 1, 10);
+      total += points;
+      const opts    = q.querySelectorAll('.opt');
+      const checked = q.querySelector('input[type=radio]:checked');
+      /* always show correct answer */
+      if (opts[correct]) opts[correct].classList.add('opt-correct-mark');
+      if (checked) {
+        const val = parseInt(checked.value, 10);
+        if (val === correct) {
+          score += points;
+          q.classList.add('q-correct');
+          checked.closest('.opt').classList.add('opt-selected-correct');
+          showFeedback(q, 'correct', points);
+        } else {
+          q.classList.add('q-wrong');
+          checked.closest('.opt').classList.add('opt-selected-wrong');
+          showFeedback(q, 'wrong', points, correct, opts);
+        }
+      } else {
+        q.classList.add('q-skipped');
+        showFeedback(q, 'skip', 0);
+      }
+      q.querySelectorAll('input[type=radio]').forEach(r => { r.disabled = true; });
+    });
+    btn.disabled = true;
+    showResult(resultId, score, total);
+  });
+}
+
 /* ─── Init ─── */
 document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initScenarioAnswers();
   initWorksheet();
   initFeedback();
+  initQuiz('form-questions',  'submit-questions',  'result-questions');
+  initQuiz('form-worksheet',  'submit-worksheet',  'result-worksheet');
 });
