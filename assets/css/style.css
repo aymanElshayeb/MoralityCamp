@@ -609,6 +609,29 @@ body {
 }
 
 /* ─── Activities ─── */
+.activity-block {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.activity-block .activity-header {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1rem; flex-wrap: wrap;
+}
+.act-num {
+  width: 40px; height: 40px;
+  background: var(--green-dark); color: #fff;
+  border-radius: 10px; display: flex;
+  align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.05rem; flex-shrink: 0;
+}
+.activity-block .activity-header h3 { font-size: 1.05rem; font-weight: 700; color: var(--green-dark); margin: 0; }
+.act-meta { font-size: .8rem; color: var(--text-light); margin-right: auto; }
+.activity-block .activity-body { color: var(--text-mid); font-size: .92rem; }
+
 .activity-card {
   background: var(--white);
   border-radius: var(--radius-lg);
