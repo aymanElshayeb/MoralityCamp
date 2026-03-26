@@ -168,7 +168,6 @@ function buildLessonPage(lesson) {
     <li><a href="../../index.html">الرئيسية</a></li>
     <li><a href="./" class="active">الدروس</a></li>
     <li><a href="../../videos/">الفيديوهات</a></li>
-    <li><a href="../../review/">مراجعة الزملاء</a></li>
   </ul>
 </nav>
 

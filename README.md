@@ -29,7 +29,7 @@
 
 1. فعّل **GitHub Discussions** في إعدادات الريبو
 2. افتح [giscus.app](https://giscus.app/ar) وأدخل `[USERNAME]/MoralityCamp`
-3. احصل على كود `<script>` والصقه في `review/index.html`
+3. احصل على كود `<script>` والصقه في الصفحة المناسبة إن احتجت تضمين تعليقات خارجية
    بدلاً من `<div id="giscus-placeholder">`
 
 ## 🗂️ هيكل الملفات
@@ -47,8 +47,6 @@ MoralityCamp/
 │   └── camp/md/            ← نسخ من ملفات Markdown المولدة من study
 ├── lessons/
 │   └── ...                 ← صفحات الدروس المتولدة
-└── review/
-    └── index.html          ← صفحة مراجعة الزملاء
 ```
 
 ## 🔄 مزامنة المحتوى من مشروع الدراسة
