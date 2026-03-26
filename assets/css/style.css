@@ -1228,6 +1228,39 @@ footer strong { color: var(--gold); }
   align-items: center;
   gap: 0.5rem;
 }
+
+.video-shell {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+  background: #000;
+}
+
+.video-shell-body {
+  padding: 1rem 1.2rem 1.3rem;
+}
+
+.video-shell-body h3 {
+  color: var(--green-dark);
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
+}
+
+.video-shell-body p {
+  color: var(--text-mid);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
 @media (max-width: 768px) {
   .media-grid { grid-template-columns: 1fr; }
 }
