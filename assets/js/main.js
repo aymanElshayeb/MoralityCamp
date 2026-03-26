@@ -183,12 +183,42 @@ function initQuiz(formId, submitBtnId, resultId) {
   });
 }
 
+/* ─── Lesson Catalog ─── */
+async function initLessonCatalog() {
+  const container = document.getElementById('lesson-cards');
+  if (!container) return;
+
+  try {
+    const response = await fetch('assets/data/lessons.json');
+    if (!response.ok) throw new Error('تعذر تحميل الدروس');
+
+    const data = await response.json();
+    container.innerHTML = data.lessons.map(lesson => `
+      <a href="lessons/${lesson.slug}/" class="card">
+        <div class="card-icon">${lesson.icon}</div>
+        <h3>${lesson.title}</h3>
+        <p>${lesson.summary}</p>
+        <span class="card-badge">${lesson.sections.length} مواد جاهزة</span>
+      </a>
+    `).join('');
+  } catch (error) {
+    container.innerHTML = `
+      <div class="card" style="text-decoration:none">
+        <div class="card-icon">⚠️</div>
+        <h3>تعذر تحميل الدروس</h3>
+        <p>تأكد من تشغيل الموقع من خادم محلي أو من GitHub Pages حتى يمكن تحميل ملفات المحتوى.</p>
+      </div>
+    `;
+  }
+}
+
 /* ─── Init ─── */
 document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initScenarioAnswers();
   initWorksheet();
   initFeedback();
+  initLessonCatalog();
   initQuiz('form-questions',  'submit-questions',  'result-questions');
   initQuiz('form-worksheet',  'submit-worksheet',  'result-worksheet');
 });

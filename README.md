@@ -38,12 +38,27 @@
 MoralityCamp/
 ├── index.html              ← الصفحة الرئيسية
 ├── .nojekyll               ← تجاوز Jekyll
+├── sync-content.js         ← مزامنة محتوى الدروس من مشروع study
 ├── assets/
 │   ├── css/style.css       ← التصميم (RTL عربي، أخضر/ذهبي)
-│   └── js/main.js          ← تفاعلية التبويبات والحفظ
+│   ├── data/lessons.json   ← فهرس الدروس المتولد
+│   └── js/                 ← تفاعلية التبويبات والحفظ وتحميل المحتوى
+├── content/
+│   └── camp/md/            ← نسخ من ملفات Markdown المولدة من study
 ├── lessons/
-│   └── ojb/
-│       └── index.html      ← درس العجب (5 تبويبات)
+│   └── ...                 ← صفحات الدروس المتولدة
 └── review/
     └── index.html          ← صفحة مراجعة الزملاء
+```
+
+## 🔄 مزامنة المحتوى من مشروع الدراسة
+
+يتم أخذ المحتوى من:
+`../study/outputs/camp/md`
+
+ولتحديث الموقع بأحدث ملفات Markdown:
+
+```bash
+cd MoralityCamp
+node sync-content.js
 ```

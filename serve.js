@@ -18,6 +18,13 @@ const MIME = {
 
 http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
+  try {
+    urlPath = decodeURIComponent(urlPath);
+  } catch (error) {
+    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('400 Bad Request');
+    return;
+  }
   if (urlPath === '/' || urlPath === '') urlPath = '/index.html';
   if (urlPath.endsWith('/')) urlPath += 'index.html';
 

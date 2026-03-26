@@ -373,6 +373,36 @@ body {
 
 .content-body strong { color: var(--text-dark); font-weight: 700; }
 
+.content-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+.content-body blockquote,
+.markdown-blockquote {
+  background: linear-gradient(135deg, var(--green-light), #fff);
+  border-right: 4px solid var(--green-mid);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.25rem;
+  margin: 1.2rem 0;
+  color: var(--green-dark);
+}
+
+.content-body blockquote p,
+.markdown-blockquote p {
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.content-body table {
+  width: 100%;
+}
+
+.markdown-body.is-loading {
+  opacity: 0.7;
+}
+
 /* ─── Quran / Hadith Boxes ─── */
 .quran-box {
   background: linear-gradient(135deg, var(--green-light), #fff);
@@ -886,6 +916,58 @@ footer strong { color: var(--gold); }
 
 /* ─── Interactive Quiz ─── */
 .quiz-form { padding-bottom: 1rem; }
+.quiz-host.is-loading,
+.markdown-body.is-loading {
+  min-height: 220px;
+}
+
+.quiz-intro-card {
+  background: linear-gradient(135deg, var(--green-light) 0%, #f7fbf8 100%);
+  border: 1px solid #d7e9de;
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.quiz-intro-kicker {
+  display: inline-block;
+  background: rgba(201, 168, 76, 0.18);
+  color: #7c5c00;
+  border: 1px solid rgba(201, 168, 76, 0.55);
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.quiz-intro-card h3 {
+  color: var(--green-dark);
+  font-size: 1.2rem;
+  margin-bottom: 0.45rem;
+}
+
+.quiz-intro-card p {
+  color: var(--text-mid);
+  font-size: 0.95rem;
+  margin-bottom: 0.9rem;
+}
+
+.quiz-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.quiz-meta-pill {
+  background: #fff;
+  border: 1px solid #d6e3da;
+  color: var(--green-dark);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
 
 .quiz-q {
   background: var(--white);
@@ -983,6 +1065,13 @@ footer strong { color: var(--gold); }
   font-size: .9rem; font-weight: 700; transition: all .2s;
 }
 .qr-retry:hover { background: var(--green-main); color: #fff; }
+
+.quiz-review-note {
+  margin-top: 1rem;
+  color: var(--text-mid);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
 
 /* ─── Back to Top ─── */
 .back-top {
