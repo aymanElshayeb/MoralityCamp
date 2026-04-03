@@ -17,7 +17,12 @@
   <button class="hamburger" id="hamburger" aria-label="قائمة">☰</button>
   <ul class="nav-links" id="nav-links">
     <li><a href="index.html" class="active">الرئيسية</a></li>
-    <li><a href="lessons/ojb/">الدروس</a></li>
+    <li class="nav-dropdown" id="lessons-dropdown">
+      <a href="#lessons-section">الدروس <span class="dropdown-arrow">▼</span></a>
+      <div class="dropdown-menu" id="dropdown-menu">
+        <!-- populated by JS -->
+      </div>
+    </li>
     <li><a href="videos/">الفيديوهات</a></li>
   </ul>
 </nav>
@@ -138,6 +143,18 @@
       <h2>وحدات المخيم</h2>
       <div class="section-divider"></div>
       <p>كل وحدة تتناول خُلُقاً أو داءً قلبياً من مصادر التزكية الأصيلة — مزوّدة بمادة المعلم، بطاقة الطالب، أسئلة تفاعلية، أنشطة، وورقة عمل</p>
+    </div>
+
+    <div class="guide-section">
+      <h3>كيف تجد ما تريد؟</h3>
+      <p style="color:var(--text-mid);font-size:0.92rem;margin-bottom:0.8rem">كل درس يحتوي على 5 أنواع من المحتوى:</p>
+      <div class="guide-types">
+        <span class="guide-type">📋 مادة المعلم</span>
+        <span class="guide-type">🎓 بطاقة الطالب</span>
+        <span class="guide-type">❓ أسئلة النقاش</span>
+        <span class="guide-type">🎯 الأنشطة التفاعلية</span>
+        <span class="guide-type">✏️ ورقة العمل</span>
+      </div>
     </div>
 
     <div class="cards-grid" id="lesson-cards">

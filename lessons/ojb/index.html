@@ -16,7 +16,10 @@
   <button class="hamburger" id="hamburger" aria-label="قائمة">☰</button>
   <ul class="nav-links" id="nav-links">
     <li><a href="../../index.html">الرئيسية</a></li>
-    <li><a href="./" class="active">الدروس</a></li>
+    <li class="nav-dropdown" id="lessons-dropdown">
+      <a href="#" class="active">الدروس <span class="dropdown-arrow">▼</span></a>
+      <div class="dropdown-menu" id="dropdown-menu"></div>
+    </li>
     <li><a href="../../videos/">الفيديوهات</a></li>
   </ul>
 </nav>
@@ -31,6 +34,19 @@
     </div>
   </div>
 </section>
+
+<nav class="breadcrumb">
+  <ol class="breadcrumb-list">
+    <li><a href="../../index.html">الرئيسية</a></li>
+    <li><a href="../../index.html#lessons-section">الدروس</a></li>
+    <li><span class="breadcrumb-current" id="breadcrumb-lesson-name">داء العُجب</span></li>
+  </ol>
+</nav>
+<div class="lesson-nav-bar">
+  <a class="lesson-nav-btn" id="lesson-prev" href="#">→ سابق</a>
+  <a class="lesson-nav-btn lesson-nav-btn--all" href="../../index.html#lessons-section">📚 جميع الدروس</a>
+  <a class="lesson-nav-btn" id="lesson-next" href="#">تالي ←</a>
+</div>
 
 <div class="tab-nav">
   <div class="tab-nav-inner container">

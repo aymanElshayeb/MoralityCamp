@@ -183,6 +183,40 @@ function initQuiz(formId, submitBtnId, resultId) {
   });
 }
 
+/* ─── Populate Lesson Dropdown ─── */
+async function populateLessonDropdown() {
+  const menu = document.getElementById('dropdown-menu');
+  if (!menu) return;
+
+  // Detect path context: homepage vs lesson page
+  const isLessonPage = !!document.body.dataset.lessonSlug;
+  const jsonPath = isLessonPage ? '../../assets/data/lessons.json' : 'assets/data/lessons.json';
+  const lessonBase = isLessonPage ? '../' : 'lessons/';
+
+  try {
+    const response = await fetch(jsonPath);
+    if (!response.ok) return;
+    const data = await response.json();
+
+    menu.innerHTML = data.lessons.map(lesson =>
+      `<a href="${lessonBase}${lesson.slug}/">${lesson.icon} ${lesson.title}</a>`
+    ).join('') +
+      '<div class="dropdown-divider"></div>' +
+      `<a href="${isLessonPage ? '../../index.html#lessons-section' : '#lessons-section'}">📚 جميع الدروس</a>`;
+  } catch (_) { /* silent fail */ }
+
+  // Toggle dropdown on click for mobile
+  const dropdown = document.getElementById('lessons-dropdown');
+  if (dropdown) {
+    dropdown.querySelector('a').addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+      }
+    });
+  }
+}
+
 /* ─── Lesson Catalog ─── */
 async function initLessonCatalog() {
   const container = document.getElementById('lesson-cards');
@@ -193,14 +227,21 @@ async function initLessonCatalog() {
     if (!response.ok) throw new Error('تعذر تحميل الدروس');
 
     const data = await response.json();
-    container.innerHTML = data.lessons.map(lesson => `
-      <a href="lessons/${lesson.slug}/" class="card">
-        <div class="card-icon">${lesson.icon}</div>
-        <h3>${lesson.title}</h3>
-        <p>${lesson.summary}</p>
-        <span class="card-badge">${lesson.sections.length} مواد جاهزة</span>
-      </a>
-    `).join('');
+    container.innerHTML = data.lessons.map(lesson => {
+      const sectionBadges = lesson.sections.map(s =>
+        `<span class="section-badge">${s.label}</span>`
+      ).join('');
+
+      return `
+        <a href="lessons/${lesson.slug}/" class="card">
+          <div class="card-icon">${lesson.icon}</div>
+          <h3>${lesson.title}</h3>
+          <p>${lesson.summary}</p>
+          <div class="card-sections">${sectionBadges}</div>
+          <span class="card-badge">${lesson.sections.length} مواد جاهزة</span>
+        </a>
+      `;
+    }).join('');
   } catch (error) {
     container.innerHTML = `
       <div class="card" style="text-decoration:none">
@@ -219,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initWorksheet();
   initFeedback();
   initLessonCatalog();
+  populateLessonDropdown();
   initQuiz('form-questions',  'submit-questions',  'result-questions');
   initQuiz('form-worksheet',  'submit-worksheet',  'result-worksheet');
 });
