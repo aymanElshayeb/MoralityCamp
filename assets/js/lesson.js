@@ -376,6 +376,52 @@
     }
   }
 
+  async function setupLessonNavigation() {
+    const lessonSlug = document.body.dataset.lessonSlug;
+    if (!lessonSlug) return;
+
+    try {
+      const response = await fetch('../../assets/data/lessons.json');
+      if (!response.ok) return;
+      const data = await response.json();
+      const lessons = data.lessons;
+      const currentIndex = lessons.findIndex(l => l.slug === lessonSlug);
+      if (currentIndex === -1) return;
+
+      const current = lessons[currentIndex];
+      const prev = currentIndex > 0 ? lessons[currentIndex - 1] : null;
+      const next = currentIndex < lessons.length - 1 ? lessons[currentIndex + 1] : null;
+
+      // Update breadcrumb
+      const breadcrumbName = document.getElementById('breadcrumb-lesson-name');
+      if (breadcrumbName) breadcrumbName.textContent = current.title;
+
+      // Update prev/next buttons
+      const prevBtn = document.getElementById('lesson-prev');
+      const nextBtn = document.getElementById('lesson-next');
+
+      if (prevBtn) {
+        if (prev) {
+          prevBtn.href = '../' + prev.slug + '/';
+          prevBtn.title = prev.title;
+        } else {
+          prevBtn.classList.add('disabled');
+          prevBtn.removeAttribute('href');
+        }
+      }
+
+      if (nextBtn) {
+        if (next) {
+          nextBtn.href = '../' + next.slug + '/';
+          nextBtn.title = next.title;
+        } else {
+          nextBtn.classList.add('disabled');
+          nextBtn.removeAttribute('href');
+        }
+      }
+    } catch (_) { /* silent fail */ }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     loadLesson().catch(error => {
       document.querySelectorAll('.markdown-body, .quiz-host').forEach(container => {
@@ -387,5 +433,6 @@
         firstPanel.innerHTML = `<div class="warn-box"><span class="icon">⚠️</span><p>${escapeHtml(error.message)}</p></div>`;
       }
     });
+    setupLessonNavigation();
   });
 })();

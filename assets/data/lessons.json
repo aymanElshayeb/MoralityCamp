@@ -204,6 +204,47 @@
           "path": "content/camp/md/محارم_اللسان_-_حكم_الغيبة/5_ورقة_عمل_الطالب.md"
         }
       ]
+    },
+    {
+      "slug": "choosing-friends",
+      "title": "اختيار الصديق",
+      "icon": "🤝",
+      "order": 6,
+      "summary": "أهمية الصحبة الصالحة وصفات الصديق الصالح وأثر الصديق على حياتك.",
+      "description": "نصوص مختارة من ثلاثة كتب في التربية الإسلامية",
+      "sourceFolder": "اختيار_الصديق",
+      "sections": [
+        {
+          "id": "teacher",
+          "label": "📋 مادة المعلم",
+          "fileName": "1_مادة_المعلم.md",
+          "path": "content/camp/md/اختيار_الصديق/1_مادة_المعلم.md"
+        },
+        {
+          "id": "student",
+          "label": "🎓 بطاقة الطالب",
+          "fileName": "2_مادة_الطالب.md",
+          "path": "content/camp/md/اختيار_الصديق/2_مادة_الطالب.md"
+        },
+        {
+          "id": "questions",
+          "label": "❓ أسئلة النقاش",
+          "fileName": "3_أسئلة_النقاش.md",
+          "path": "content/camp/md/اختيار_الصديق/3_أسئلة_النقاش.md"
+        },
+        {
+          "id": "activities",
+          "label": "🎯 الأنشطة التفاعلية",
+          "fileName": "4_الأنشطة_التفاعلية.md",
+          "path": "content/camp/md/اختيار_الصديق/4_الأنشطة_التفاعلية.md"
+        },
+        {
+          "id": "worksheet",
+          "label": "✏️ ورقة العمل",
+          "fileName": "5_ورقة_عمل_الطالب.md",
+          "path": "content/camp/md/اختيار_الصديق/5_ورقة_عمل_الطالب.md"
+        }
+      ]
     }
   ]
 }

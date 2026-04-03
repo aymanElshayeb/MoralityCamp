@@ -17,7 +17,12 @@
   <button class="hamburger" id="hamburger" aria-label="قائمة">☰</button>
   <ul class="nav-links" id="nav-links">
     <li><a href="index.html" class="active">الرئيسية</a></li>
-    <li><a href="lessons/ojb/">الدروس</a></li>
+    <li class="nav-dropdown" id="lessons-dropdown">
+      <a href="#lessons-section">الدروس <span class="dropdown-arrow">▼</span></a>
+      <div class="dropdown-menu" id="dropdown-menu">
+        <!-- populated by JS -->
+      </div>
+    </li>
     <li><a href="videos/">الفيديوهات</a></li>
   </ul>
 </nav>
@@ -56,29 +61,32 @@
   </div>
 </section>
 
-<!-- ─── Mission ─── -->
-<section class="section section-alt" style="padding:2.5rem 0">
-  <div class="container" style="max-width:900px">
-    <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
-      <div class="mission-card">
-        <span class="mc-icon">🌱</span>
-        <h4>تزكية النفس</h4>
-        <p>معرفة أمراض القلوب وعلاجها وفق هدي الكتاب والسنة</p>
+<!-- ─── Lessons section ─── -->
+<section class="section" id="lessons-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>وحدات المخيم</h2>
+      <div class="section-divider"></div>
+      <p>كل وحدة تتناول خُلُقاً أو داءً قلبياً من مصادر التزكية الأصيلة — مزوّدة بمادة المعلم، بطاقة الطالب، أسئلة تفاعلية، أنشطة، وورقة عمل</p>
+    </div>
+
+    <div class="guide-section">
+      <h3>كيف تجد ما تريد؟</h3>
+      <p style="color:var(--text-mid);font-size:0.92rem;margin-bottom:0.8rem">كل درس يحتوي على 5 أنواع من المحتوى:</p>
+      <div class="guide-types">
+        <span class="guide-type">📋 مادة المعلم</span>
+        <span class="guide-type">🎓 بطاقة الطالب</span>
+        <span class="guide-type">❓ أسئلة النقاش</span>
+        <span class="guide-type">🎯 الأنشطة التفاعلية</span>
+        <span class="guide-type">✏️ ورقة العمل</span>
       </div>
-      <div class="mission-card">
-        <span class="mc-icon">📚</span>
-        <h4>التأصيل العلمي</h4>
-        <p>الاعتماد على كتب الأئمة في التزكية والأخلاق والرقائق</p>
-      </div>
-      <div class="mission-card">
-        <span class="mc-icon">🧠</span>
-        <h4>الفهم والتفكر</h4>
-        <p>تنمية مهارات التأمل والنقد الذاتي لدى الشباب</p>
-      </div>
-      <div class="mission-card">
-        <span class="mc-icon">🤲</span>
-        <h4>التطبيق والعمل</h4>
-        <p>ربط كل خُلُق بخطوات عملية قابلة للتنفيذ اليومي</p>
+    </div>
+
+    <div class="cards-grid" id="lesson-cards">
+      <div class="card" style="text-decoration:none">
+        <div class="card-icon">⏳</div>
+        <h3>جارٍ تحميل الدروس</h3>
+        <p>يتم الآن عرض أحدث المواد المولدة من مشروع الدراسة.</p>
       </div>
     </div>
   </div>
@@ -126,25 +134,6 @@
         <div style="margin-top:1rem">
           <a href="videos/" class="btn btn-primary">🎬 افتح صفحة الفيديوهات</a>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── Lessons section ─── -->
-<section class="section" id="lessons-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>وحدات المخيم</h2>
-      <div class="section-divider"></div>
-      <p>كل وحدة تتناول خُلُقاً أو داءً قلبياً من مصادر التزكية الأصيلة — مزوّدة بمادة المعلم، بطاقة الطالب، أسئلة تفاعلية، أنشطة، وورقة عمل</p>
-    </div>
-
-    <div class="cards-grid" id="lesson-cards">
-      <div class="card" style="text-decoration:none">
-        <div class="card-icon">⏳</div>
-        <h3>جارٍ تحميل الدروس</h3>
-        <p>يتم الآن عرض أحدث المواد المولدة من مشروع الدراسة.</p>
       </div>
     </div>
   </div>
